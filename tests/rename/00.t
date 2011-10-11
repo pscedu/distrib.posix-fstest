@@ -33,6 +33,7 @@ expect regular,${inode},0644,2 lstat ${n2} type,inode,mode,nlink
 expect 0 unlink ${n0}
 expect 0 unlink ${n2}
 
+# 16
 expect 0 mkdir ${n0} 0755
 expect dir,0755 lstat ${n0} type,mode
 inode=`${fstest} lstat ${n0} inode`
@@ -57,6 +58,7 @@ expect fifo,${inode},0644,2 lstat ${n2} type,inode,mode,nlink
 expect 0 unlink ${n0}
 expect 0 unlink ${n2}
 
+# 36
 expect 0 create ${n0} 0644
 rinode=`${fstest} lstat ${n0} inode`
 expect regular,0644 lstat ${n0} type,mode
@@ -71,7 +73,7 @@ expect symlink,${sinode} lstat ${n2} type,inode
 expect 0 unlink ${n0}
 expect 0 unlink ${n2}
 
-# successful rename(2) updates ctime.
+# 47: successful rename(2) updates ctime.
 expect 0 create ${n0} 0644
 ctime1=`${fstest} stat ${n0} ctime`
 sleep 1

@@ -57,6 +57,7 @@ expect EACCES -u 65533 -g 65533 open ${n1} O_RDONLY
 expect 0 -u 65533 -g 65533 open ${n1} O_WRONLY
 expect EACCES -u 65533 -g 65533 open ${n1} O_RDWR
 
+# 40
 expect 0 -u 65534 -g 65534 chmod ${n1} 0177
 expect EACCES -u 65534 -g 65534 open ${n1} O_RDONLY
 expect EACCES -u 65534 -g 65534 open ${n1} O_WRONLY
@@ -70,6 +71,7 @@ expect EACCES -u 65533 -g 65533 open ${n1} O_RDONLY
 expect EACCES -u 65533 -g 65533 open ${n1} O_WRONLY
 expect EACCES -u 65533 -g 65533 open ${n1} O_RDWR
 
+# 52
 expect 0 -u 65534 -g 65534 chmod ${n1} 0077
 expect EACCES -u 65534 -g 65534 open ${n1} O_RDONLY
 expect EACCES -u 65534 -g 65534 open ${n1} O_WRONLY
@@ -87,6 +89,7 @@ expect EACCES -u 65533 -g 65533 open ${n1} O_RDWR
 # EACCES for reading a directory with no execute access
 #
 cd ..
+# 64
 expect 0 -u 65534 -g 65534 open ${n0} O_RDONLY
 expect 0 -u 65534 -g 65534 chmod ${n0} 0355
 expect EACCES -u 65534 -g 65534 open ${n0} O_RDONLY
