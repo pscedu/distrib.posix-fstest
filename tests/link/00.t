@@ -29,6 +29,7 @@ expect regular,0644,3 lstat ${n0} type,mode,nlink
 expect regular,0644,3 lstat ${n1} type,mode,nlink
 expect regular,0644,3 lstat ${n2} type,mode,nlink
 
+# 11
 expect 0 chmod ${n1} 0201
 expect 0 chown ${n1} 65534 65533
 
@@ -36,21 +37,25 @@ expect regular,0201,3,65534,65533 lstat ${n0} type,mode,nlink,uid,gid
 expect regular,0201,3,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
 expect regular,0201,3,65534,65533 lstat ${n2} type,mode,nlink,uid,gid
 
+# 16
 expect 0 unlink ${n0}
 expect ENOENT lstat ${n0} type,mode,nlink,uid,gid
 expect regular,0201,2,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
 expect regular,0201,2,65534,65533 lstat ${n2} type,mode,nlink,uid,gid
 
+# 20
 expect 0 unlink ${n2}
 expect ENOENT lstat ${n0} type,mode,nlink,uid,gid
 expect regular,0201,1,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
 expect ENOENT lstat ${n2} type,mode,nlink,uid,gid
 
+# 24
 expect 0 unlink ${n1}
 expect ENOENT lstat ${n0} type,mode,nlink,uid,gid
 expect ENOENT lstat ${n1} type,mode,nlink,uid,gid
 expect ENOENT lstat ${n2} type,mode,nlink,uid,gid
 
+# 28
 expect 0 mkfifo ${n0} 0644
 expect fifo,0644,1 lstat ${n0} type,mode,nlink
 
@@ -58,6 +63,7 @@ expect 0 link ${n0} ${n1}
 expect fifo,0644,2 lstat ${n0} type,mode,nlink
 expect fifo,0644,2 lstat ${n1} type,mode,nlink
 
+# 33
 expect 0 link ${n1} ${n2}
 expect fifo,0644,3 lstat ${n0} type,mode,nlink
 expect fifo,0644,3 lstat ${n1} type,mode,nlink
@@ -66,6 +72,7 @@ expect fifo,0644,3 lstat ${n2} type,mode,nlink
 expect 0 chmod ${n1} 0201
 expect 0 chown ${n1} 65534 65533
 
+# 39
 expect fifo,0201,3,65534,65533 lstat ${n0} type,mode,nlink,uid,gid
 expect fifo,0201,3,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
 expect fifo,0201,3,65534,65533 lstat ${n2} type,mode,nlink,uid,gid
@@ -75,6 +82,7 @@ expect ENOENT lstat ${n0} type,mode,nlink,uid,gid
 expect fifo,0201,2,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
 expect fifo,0201,2,65534,65533 lstat ${n2} type,mode,nlink,uid,gid
 
+# 46
 expect 0 unlink ${n2}
 expect ENOENT lstat ${n0} type,mode,nlink,uid,gid
 expect fifo,0201,1,65534,65533 lstat ${n1} type,mode,nlink,uid,gid
